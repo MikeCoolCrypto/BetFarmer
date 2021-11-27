@@ -1,0 +1,272 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>BetFarmer</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- favicon -->		
+
+		<!-- all css here -->
+
+		<!-- bootstrap v3.3.6 css -->
+		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<!-- owl.carousel css -->
+		<link rel="stylesheet" href="static/css/owl.carousel.css">
+		<link rel="stylesheet" href="static/css/owl.transitions.css">
+       <!-- Animate css -->
+        <link rel="stylesheet" href="static/css/animate.css">
+        <!-- meanmenu css -->
+        <link rel="stylesheet" href="static/css/meanmenu.min.css">
+		<!-- font-awesome css -->
+		<link rel="stylesheet" href="static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/css/themify-icons.css">
+		<link rel="stylesheet" href="static/css/flaticon.css">
+		<!-- magnific css -->
+        <link rel="stylesheet" href="static/css/magnific.min.css">
+		<!-- style css -->
+		<link rel="stylesheet" href="static/css/style.css">
+		<!-- responsive css -->
+		<link rel="stylesheet" href="static/css/responsive.css">
+
+		<!-- modernizr css -->
+		<script src="static/js/vendor/modernizr-2.8.3.min.js"></script>
+	</head>
+		<body>
+
+		<!--[if lt IE 8]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+
+        <div id="preloader"></div>
+        <header class="header-one">
+            <!-- Start top bar -->
+           
+            <!-- End top bar -->
+            <!-- header-area start -->
+            <div id="sticker" class="header-area hidden-xs" style="background-color: white">
+                <div class="container" >
+                    <div class="row"  >
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <!-- logo start -->
+                                <div >
+                                    <div >
+                                        <a >
+                                            <img src="static/img/logo/logo.png" width="20%">
+                                        </a>
+                                        <div style="float: right; margin-top: 1.5%">
+                                            <!-- search option end -->
+                                            <h3><a id="btn-connect" href="#" onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#000'" style="color:black; margin-top: 5%"  onclick="connectWallet()">Connect Wallet</h3></a>
+                                            <strong></strong> <span id="selected-account"></span>
+                                            <span id="network-name"></span>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- logo end -->
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- header-area end -->
+            
+            <!-- mobile-menu-area end -->		
+        </header>
+        <!-- header end -->
+   
+        
+
+                 
+        <!-- Start Support-service Area -->
+        <div class="support-service-area fix area-padding-2">
+            <div class="container">
+                <div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="section-headline text-center">
+                            <h3>What will be the Bitcoin price today at 00:00 UTC?</h3>
+						</div>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="support-all">
+                        <!-- Start About -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="support-services wow ">
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                
+                                <img  class="support-images" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png?v=014"/>
+                                    <div class="support-content">
+                                        <h4>Total value locked: <span id="totalValueLocked"></span></h4>
+                                        <p>Farm APR: 20%</p>
+
+                                        <p>USDC in your wallet: <span id="USDCBalance">..</span><p></p>
+
+                                        <p>Current BTC Price: <span id="BTCPrice">..</span><p>
+                                        <p>Current time: <span id="time">..</span> UTC<p>
+                                        
+                                        <br>
+
+                                        <p>Your stake: <span id="userStake"></span><p>
+                                        <p>Possible reward: <span id="totalReward"></span><p>
+                                        
+                                        <p>You win if your prediction is correct within a range of 0.5%.</span><p>
+                                            
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <div style="float:left">
+                                                <div>
+                                                    <h3> Stake USDC: <input id="valueStaked"></h3>
+                                                    <button type="submit" id="approveButton" class="ready-btn left-btn" onclick="approveToken()" style="margin-top:0%" >Approve</button>
+                                                    <button  id="depositButton" class="ready-btn left-btn"  onclick="stake()" style="margin-top:0%; display:none" >Stake!</button>
+                                                </div>
+<br>
+<br>
+                                                <div>
+                                                    <h3> BTC price today at 00:00: <input id="betValue"></h3>
+                                                    <button  id="betButton" class="ready-btn left-btn" onclick="makeABetCall()" style="margin-top:0%" >BET!</button>
+                                                </div>
+                                                
+                                        </div>
+                                  </div>
+                            </div>
+
+                            <div>
+                                You won't lose your tokens and can stake them at anytime, the reward is coming from farming!
+                                <br> Price is retrieved thanks to Chainlink Oracle!
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
+                      
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Support-service Area -->
+
+        <div class="support-service-area fix area-padding-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="section-headline text-center">
+                                <h3>BetFarmer is a new way to make bets without losing your money!</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+        <!-- Start Support-service Area -->
+        <div class="support-service-area fix area-padding-2">
+            <div class="container">
+                    <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="section-headline text-center">
+                                    <h3>Your bets</h3>
+                                </div>
+                            </div>
+                        </div>
+                    <div id="notConnectedInvestment" style="text-align: center"> Connect your wallet to see your bets.</div>
+                    <div id="connected" style="display: none">
+
+                
+                        <hr>
+
+                        <div id="network">
+
+                        <h3>All account balances</h3>
+
+                        <table class="table table-listing">
+                        <thead>
+                            <th>Address</th>
+                            <th>Matic balance</th>
+                        </thead>
+
+                        <tbody id="accounts">
+                        </tbody>
+                        </table>
+
+                    </div>
+
+                    <br>
+
+                
+
+                    </div>
+                </div>
+                </div>
+
+                <!-- We use simple <template> templating for the example -->
+                <div id="templates" style="display: none">
+                <template id="template-balance">
+                    <tr>
+                    <th class="address"></th>
+                    <td class="balance"></td>
+                    </tr>
+                </template>
+                </div>
+
+                <table class="table table-listing">
+                        <thead>
+                            <th>Your bets: </th>
+                        </thead>
+
+                        <tr id="bets">
+                            
+                        </tr>
+                </table>
+
+              
+            </div>
+                
+        <!--
+            <div onclick="approveWMATIC()">Click here to approve Wmatin</div>
+       
+		 all js here -->
+
+		<!-- jquery latest version -->
+		<script src="static/js/vendor/jquery-1.12.4.min.js"></script>
+		<!-- bootstrap js -->
+		<script src="static/js/bootstrap.min.js"></script>
+		<!-- owl.carousel js -->
+		<script src="static/js/owl.carousel.min.js"></script>
+		  <!-- stellar js -->
+        <script src="static/js/jquery.stellar.min.js"></script>
+		<!-- magnific js -->
+        <script src="static/js/magnific.min.js"></script>
+        <!-- wow js -->
+        <script src="static/js/wow.min.js"></script>
+        <!-- meanmenu js -->
+        <script src="static/js/jquery.meanmenu.js"></script>
+		<!-- Form validator js -->
+		<script src="static/js/form-validator.min.js"></script>
+		<!-- plugins js -->
+		<script src="static/js/plugins.js"></script>
+		<!-- main js -->
+        <script src="static/js/main.js"></script>
+        
+        <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+    
+        <!-- This is our example code -->
+        <script language="javascript" type="text/javascript" src="/static/js/abi/uscd_abi.js"></script>
+         <script language="javascript" type="text/javascript" src="/static/js/abi/betting_contract.js"></script>
+        <!-- <script language="javascript" type="text/javascript" src="js/abi/beefy_vault.js"></script> -->
+
+        <script type="text/javascript" src="/static/js/app.js"></script>
+
+	</body>
+
+</html>

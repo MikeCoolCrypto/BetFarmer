@@ -1,0 +1,42 @@
+## Inspiration
+Crypto offers a whole new world of possibilities. 
+I am really amazed by all the farming projects which rewars users who stake their tokens. 
+I was impressed by projects such as Pool Together or Moonpots which take existing concepts of lottery and adapt them in the crypto world to offer a whole new experience.
+These projects offer no-loss lottery by farming the money staked by everyone and reward randomly selected users.
+
+I really like the idea and I was thinking, could I make a similar project but instead of random selection it would require participants to do something to be rewarded.
+Learning about ChainLink, I though about doing a price prediction project where users can stake their token and bet on a future price of a token but without losing their tokens in case of wrong predictions.
+
+The idea is that even by staking only a small amount of tokens, users can get a big reward thanks to the farm of everyone!
+
+
+## What it does
+All users can stake their tokens and bet on the price of Bitcoin in USD at a specific time.
+From the time they bet until the time the bet is checked against the real value, their tokens are staked in a farming contract.
+Then the users who guess right within a range of 1% around the real price earn the whole farming reward.
+The other users do not lose their tokens and continue to stake them for the next draw.
+
+
+## How we built it
+BetFarmer is built using solidity and connecting to existing farm contracts.
+For the POC I have used a farm contract from Beefy. 
+The farm contracts from beefy offer really great compounded yield on stablecoin for instance so the risks are pretty low.
+
+
+## Challenges we ran into
+I have done some projects related to the blockchain before but not as developed as this one.
+I had to learn how to connect my smart contracts to other smarts contracts and to be able to test them i had to fork existing mainnet using Hardhat. It was really challenging to learn everything in such a short time but I am also really proud of all I have accomplished and all the new skills I have now.
+
+
+## Accomplishments that we're proud of
+I am really proud that I was able to go at the end of the project and to see it working.
+Of course it will need users to work but at least the project is kind of already existing!
+
+
+## What we learned
+I learnt how to fork the mainnet with hardhat to be able to interact with existing smart contracts on a local test blockchain. That is really amazing when you think about it, it is like the real blockchain continue to be mined but only for me on my computer to run my test!
+
+
+## What's next for BetFarmer
+Well you tell me ? :p  
+Joke apart, I would like to see this project adopted by more users. I could improve the UI and I am looking for members who would like to get involved in helping me to build the application and make it known!
