@@ -20,7 +20,8 @@ The other users do not lose their tokens and continue to stake them for the next
 ## How we built it
 BetFarmer is built using solidity and connecting to existing farm contracts.
 For the POC I have used a farm contract from Beefy. 
-The farm contracts from beefy offer really great compounded yield on stablecoin for instance so the risks are pretty low.
+The farm contracts from Beefy offer really great compounded yield on stablecoin for instance so the risks are pretty low.
+In order to simulate the farm I forked the Polygon blockhain using hardhat and Alchemy.
 
 
 ## Challenges we ran into
@@ -34,7 +35,8 @@ Of course it will need users to work but at least the project is kind of already
 
 
 ## What we learned
-I learnt how to fork the mainnet with hardhat to be able to interact with existing smart contracts on a local test blockchain. That is really amazing when you think about it, it is like the real blockchain continue to be mined but only for me on my computer to run my test!
+I learnt how to fork the mainnet with hardhat and Alchemy to be able to interact with existing smart contracts on a local test blockchain. 
+That is really amazing when you think about it, it is like the real blockchain continue to be mined but only for me on my computer to run my test!
 
 
 ## What's next for BetFarmer

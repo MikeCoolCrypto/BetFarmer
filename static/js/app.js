@@ -252,7 +252,7 @@ function connectWallet() {
 var usdcContract;
 var WMaticContract;
 var mainBettingContract;
-var mainBettingContract_address = "0x0E4fd96252bd970B205512933CFae92679e95bF9";
+var mainBettingContract_address = "0x32a1ECc07cCdb28802EBfb2172779c09a36755c2";
 
 
 function instantiateUSDC() {
@@ -333,7 +333,7 @@ function retrieveBTCPrice() {
 function retrieveTotalStaked() {
   mainBettingContract.methods.getTotalStaked().call().then(function(result) {
     console.log("Total Stake is: " + JSON.stringify(result));
-    var stakeRetrieved = parseInt(result)/10**18 * 1000000 // fake amount if 1M was staked;
+    var stakeRetrieved = parseInt(result)/10**18 + 1000000 // fake amount if 1M was staked;
     $("#totalValueLocked").text(stakeRetrieved.toFixed(2))
     var possibleReward = stakeRetrieved*0.15/365;
     $("#totalReward").text(possibleReward.toFixed(2));

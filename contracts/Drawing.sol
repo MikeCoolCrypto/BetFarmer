@@ -24,6 +24,10 @@ interface IFarmContractUsingZap {
     function estimateSwap(address beefyVault, address tokenIn, uint256 fullInvestmentIn) external view returns(uint256 swapAmountIn, uint256 swapAmountOut, address swapTokenOut); 
 }
 
+interface IFarmContract {
+    function balanceOf(address account) external view returns(uint256 balance);
+}
+
 
 interface IUniswapV2Router {
   function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts);  
@@ -43,6 +47,7 @@ contract StakingPart is Ownable {
     mapping(address => bool) public isStaking;
     mapping(address => uint256) public startTime;
     
+    address[] listOfParticipants; 
 
     AggregatorV3Interface internal priceFeed;
 
@@ -57,12 +62,12 @@ contract StakingPart is Ownable {
     address zapFarmContract;
     
     string public name = "BetFarmer";
+    uint public percentageRetrievedPerDay;
 
     IERC20 private stakeToken;
     
      //address of the Staking Token
     address public staking_token;
-    
     uint256 public totalStaked = 0;
     
     event Stake(address indexed from, uint256 amount);
@@ -99,6 +104,11 @@ contract StakingPart is Ownable {
        staking_token = _stakingToken;
        stakeToken = IERC20(_stakingToken);
     }
+
+    function setPercentageRetrievedPerDay(uint _percentage) onlyOwner public {
+       percentageRetrievedPerDay = _percentage;
+    }
+    
     
     function setPairedTokenForFarm(address _pairedToken) onlyOwner public {
        pairedTokenForFarm = _pairedToken;
@@ -155,11 +165,10 @@ contract StakingPart is Ownable {
     }
     
     // Withdraw all the farm tokens from farm contract
-    function withdrawFromFarmVault() private {
+    function withdrawFromFarmVault(uint amount) private {
         emit Log("Going to withdraw");
-        uint farmTokenAmount = IERC20(pairedTokenForFarm).balanceOf(address(this));
-        (uint256 swapAmountIn, uint256 swapAmountOut, address swapTokenOut) = IFarmContractUsingZap(zapFarmContract).estimateSwap(farmContract, pairedTokenForFarm, farmTokenAmount);
-        IFarmContractUsingZap(zapFarmContract).beefOutAndSwap(farmContract, farmTokenAmount, staking_token, swapAmountOut);
+        (uint256 swapAmountIn, uint256 swapAmountOut, address swapTokenOut) = IFarmContractUsingZap(zapFarmContract).estimateSwap(farmContract, pairedTokenForFarm, amount);
+        IFarmContractUsingZap(zapFarmContract).beefOutAndSwap(farmContract, amount, staking_token, swapAmountOut);
     }
     
     function addTokenToFarmVault() private {
@@ -195,6 +204,8 @@ contract StakingPart is Ownable {
             stakingBalance[msg.sender] >= amount, 
             "Nothing to unstake or too much to unstake"
         );
+
+        //withdrawFromFarmVault(amount);
         //uint256 yieldTransfer = calculateYieldTotal(msg.sender);
         startTime[msg.sender] = block.timestamp;
         uint256 balTransfer = amount;
@@ -252,10 +263,18 @@ contract StakingPart is Ownable {
         
         betFromAddress[msg.sender].push(valueBet);
         betFromEveryone[valueBet] = existingAddress;
+        
     }
 
-    // Winners are the lucky ones who had a 0.99price < number < 1.1price  
+    // Winners are the lucky ones who had a 0.995price < number < 1.05price  
     function drawTheWinners() public onlyOwner {
+
+        uint totalFarmedAmount = IFarmContract(farmContract).balanceOf(address(this));
+        //We only take what we win every day minus with a margin to compensate transaction fees and developer fees
+        uint farmedAmount = totalFarmedAmount * percentageRetrievedPerDay/100;
+
+        withdrawFromFarmVault(farmedAmount); 
+        
         int latestBTCUSD = getLatestPrice() / 10**8;
     
         int belowPercent = latestBTCUSD * 995 / 1000;
